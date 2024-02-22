@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>ОНЛАЙН БИБЛИОТЕКА</title>
+  </head>
+  <body>
+    <header>
+      <h1>ОНЛАЙН БИБЛИОТЕКА</h1>
+    </header>
+    <nav>
+      <a href="kursova.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="books.html">Books</a>
+      <a href="authors.html">Authors</a>
+      <a href="kursova.html" onclick="logout()">Logout</a>
+    </nav>
+    <section id="home-content">
+      <h2>ДОБРЕ ДОШЛИ В НАШАТА ОНЛАЙН БИБЛИОТЕКА</h2>
+      <p>Изберете от нашата подбрана колекция от книги. Запознайте се със
+        световно известните авторски издания.
+        Харесайте, поръчайте, прочетете!</p>
+
+      <p>Already have an account?</p>
+      <button onclick="goToLogin()">Login</button>
+    </section>
+    <footer>
+      <p>Изготвено от [Станислав Петелков] - Фак. Номер: [212911]</p>
+    </footer>
+    <script>
+        const navigation = document.querySelector('nav');
+        const userInfo = localStorage.getItem('username');
+
+        function updateNavigation() {
+            if (userInfo) {
+                navigation.innerHTML = `<a href="kursova.html">Home</a>
+                <a href="books.html">Books</a>
+                <a href="authors.html">Authors</a>
+                <a href="kursova.html" onclick="logout()">Logout</a>`
+            } else {
+                navigation.innerHTML = `<a href="kursova.html">Home</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+                <a href="books.html">Books</a>`
+            }
+        }
+
+        updateNavigation();
+
+        const section = document.getElementById('home-content');
+
+        if (userInfo) {
+            section.innerHTML = `<h2>ДОБРЕ ДОШЛИ В НАШАТА ОНЛАЙН БИБЛИОТЕКА</h2>
+                <p>Изберете от нашата подбрана колекция от книги. Запознайте се със световно известните авторски издания.
+        Харесайте, поръчайте, прочетете!</p>`
+        } else {
+            section.innerHTML = `<h2>ДОБРЕ ДОШЛИ В НАШАТА ОНЛАЙН БИБЛИОТЕКА</h2>
+                <p>Изберете от нашата подбрана колекция от книги. Запознайте се със световно известните авторски издания.
+        Харесайте, поръчайте, прочетете!</p>
+                <p>Already have an account? </p>
+                <button onclick="goToLogin()">Login</button>`
+        }
+
+        function goToLogin() {
+            window.location.href = 'login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('username');
+            updateNavigation();
+        }
+    </script>
+
+  </body>
+</html>

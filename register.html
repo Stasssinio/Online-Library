@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register - ОНЛАЙН БИБЛИОТЕКА </title>
+        <link rel="stylesheet" type="text/css" href="register.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>ОНЛАЙН БИБЛИОТЕКА</h1>
+        </header>
+
+        <nav>
+            <a href="kursova.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+            <a href="books.html">Books</a>
+            <a href="kursova.html">Logout</a>
+        </nav>
+
+        <section id="register-content">
+            <h2>Register</h2>
+            <form method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="repeatPassword">Repeat Password:</label>
+                <input type="password" id="repeatPassword" name="repeatPassword"
+                    required>
+
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Login here</a>.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2023 ОНЛАЙН БИБЛИОТЕКА БЪЛГАРИЯ. All rights reserved.</p>
+        </footer>
+        <script>
+            const navigation = document.querySelector('nav');
+        const userInfo = localStorage.getItem('username');
+
+        if (userInfo) {
+            navigation.innerHTML = `<a href="kursova.html">Home</a>
+        <a href="books.html">Books</a>
+        <a href="authors.html">Authors</a>
+        <a href="kursova.html">Logout</a>`
+        } else {
+            navigation.innerHTML = `<a href="kursova.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="books.html">Books</a>`
+        }
+
+
+        document.getElementById('register-content').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const rePass = document.getElementById('repeatPassword').value;
+
+            if (password !== rePass) {
+                alert('password mismatch!')
+            } else {
+                const userData = {
+                    username,
+                }
+
+                localStorage.setItem('username', JSON.stringify(userData));
+
+                window.location.href = 'kursova.html'
+            }
+
+
+        })
+        </script>
+    </body>
+</html>
